@@ -17,8 +17,7 @@ The main goal of this project is to improve hands-on skills in:
 This repository documents attack scenarios, custom detection rules, firewall configurations, active response mechanisms, and mitigation techniques developed during the lab activities.
 
 
-<img width="860" height="607" alt="image" src="https://github.com/user-attachments/assets/140d812a-190b-4239-b898-18427d7d2851" />
-
+<img width="855" height="607" alt="image" src="https://github.com/user-attachments/assets/f45b79ea-8cd2-4aa5-af26-c51b356bb3fa" />
 
 Technologies Used
 
