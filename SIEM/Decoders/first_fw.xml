@@ -5,7 +5,7 @@
 <decoder name="opnsense-network">
   <parent>opnsense-filterlog</parent>
 
-  <regex type="pcre2">[0-9]+,,,(.*?),(.*?),(.*?),(pass|block),(in|out),([0-9]+),.*?,.*?,.*?,.*?,.*?,.*?,.*?,.*?,([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+),([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+),([0-9]+),([0-9]+)</regex>
+  <regex type="pcre2">[0-9]+,,,(.*?),(.*?),(.*?),(pass|block),(in|out),([0-9]+),.*?,.*?,.*?,.*?,.*?,.*?,.*?,(.*?),.*?,([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+),([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+),([0-9]+),([0-9]+)</regex>
 
-  <order>tracker,interface,reason,fw_action,direction,ip_version,srcip,dstip,srcport,dstport</order>
+  <order>tracker,interface,reason,fw_action,direction,ip_version,net_protocol,srcip,dstip,srcport,dstport</order>
 </decoder>
