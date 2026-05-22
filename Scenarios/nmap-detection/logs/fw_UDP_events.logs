@@ -1,0 +1,12 @@
+	LAN		2026-05-22T08:14:34-03:00	10.4.0.5:60278	10.2.0.13:32385	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:34-03:00	10.4.0.5:60278	10.2.0.13:32385	udp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T08:14:33-03:00	10.4.0.5:60278	10.2.0.13:49205	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:33-03:00	10.4.0.5:60278	10.2.0.13:49205	udp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T08:14:32-03:00	10.4.0.5:60282	10.2.0.13:16862	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:32-03:00	10.4.0.5:60282	10.2.0.13:16862	udp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T08:14:31-03:00	10.4.0.5:60271	10.2.0.13:40724	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:31-03:00	10.4.0.5:60271	10.2.0.13:40724	udp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T08:14:30-03:00	10.4.0.5:60280	10.2.0.13:16862	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:30-03:00	10.4.0.5:60280	10.2.0.13:16862	udp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T08:14:30-03:00	10.4.0.5:60278	10.2.0.13:16862	udp	let out anything from firewall host itself	
+WAN		2026-05-22T08:14:30-03:00	10.4.0.5:60278	10.2.0.13:16862	udp	permitir trafego da rede hacker para o lab
