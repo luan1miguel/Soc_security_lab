@@ -1,30 +1,34 @@
 <!-- as regras abaixo foram criadas para identificar e diferenciar 1 scan via TCP de 1 via UPD , visando possiveis regras que serão criadas futuramente -->
-<group name="opnsense,firewall,scan,TCP_scan">
+<group name="opnsense,scan,Tcp_scan">
 
-  <rule id="110002" level="12" frequency="15" timeframe="60">
+  <rule id="110002" level="8" frequency="15" timeframe="60">
 
-    <if_matched_sid>100001</if_matched_sid>
+    <if_matched_group>firewall</if_matched_group>
 
     <field name="net_protocol">tcp</field>
 
     <same_srcip />
 
+    <different_dstport />
+
     <description>Possível port scan detectado pelo OPNsense</description>
 
-    <group>port_scan,reconnaissance,attack,TCP_scan</group>
+    <group>port_scan,reconnaissance,attack</group>
 
   </rule>
 
 </group>
-<group name="opnsense,firewall,scan,Udp_scan">
+<group name="opnsense,scan,Udp_scan">
 
-  <rule id="110003" level="12" frequency="15" timeframe="60">
+  <rule id="110003" level="8" frequency="15" timeframe="60">
 
-    <if_matched_sid>100001</if_matched_sid>
+    <if_matched_group>firewall</if_matched_group>
 
     <field name="net_protocol">UDP</field>
 
     <same_srcip />
+
+    <different_dstport />
 
     <description>Possível port scan via UDP detectado pelo OPNsense</description>
 
