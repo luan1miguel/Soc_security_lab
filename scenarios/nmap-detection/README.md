@@ -41,6 +41,89 @@ Rule `110002` correlates multiple connection attempts from the same source IP wi
 Wazuh generates a reconnaissance alert for SOC analysis
 
 The alert allows the SOC analyst to investigate the source IP, target ports, timestamps, and overall scanning behavior.
+--
+## TCP and UDP Scan Detection
+
+The attacker used Nmap without additional flags to perform a basic TCP scan against the target machine.
+
+By default, Nmap uses the TCP protocol during standard scan operations.
+
+<img width="587" height="214" alt="image" src="https://github.com/user-attachments/assets/7a3cfa65-cf2b-41d7-a079-492309c3dfcc" />
+
+Due to the architecture of this lab environment, the firewall allows traffic between the attacker network and the target network.
+
+<img width="1504" height="438" alt="image" src="https://github.com/user-attachments/assets/9548a3a0-e1a1-4a29-a736-73b6078b607b" />
+
+The detection rule uses correlation logic based on:
+- connection frequency;
+- timeframe;
+- same source IP address;
+- different destination ports.
+
+Multiple connection attempts from the same source IP within a short period of time may indicate reconnaissance activity or automated scanning behavior.
+
+The rule also checks for different destination ports, which is commonly associated with service enumeration attempts.
+
+<rule id="110002" level="8" frequency="15" timeframe="60">
+    <field name="net_protocol">tcp</field>
+    <same_srcip />
+    <different_dstport />
+</rule> 
+After the correlation conditions are met, Wazuh generates multiple alert events related to the scan activity.
+
+<img width="1918" height="918" alt="image" src="https://github.com/user-attachments/assets/585a1289-14b9-4b53-b20d-2cf49b71a679" /> <img width="1911" height="907" alt="image" src="https://github.com/user-attachments/assets/34bff1a9-5471-4223-8b48-f7385c9f381e" />
+
+A high number of connection attempts originating from the same IP address is commonly associated with reconnaissance and enumeration activity.
+
+The same detection logic was also applied to UDP scans. The primary difference between the TCP and UDP detection rules is the network protocol field:<field name="net_protocol">udp</field>
+
+After detection by the SIEM platform, the SOC team may apply mitigation actions such as:
+
+firewall blocking rules;
+active response automation;
+IDS/IPS integration;
+network isolation procedures.
+--
+## Bypass techniques
+
+so a experience attacker can thing aboute the SOC scenarios and then take the care to do a minimal ruid to the SOC teams , or in another scenarios 
+to bypass some defenses in the enviroment.
+
+and to do this they will used some know techniques like the fragment packets in this techniques the nmap divided the intere packets ( 20 bytes) in 
+small packets like 8 bytes or less , this will broke the SIEM/firewall flow because the cannot analyse with the header broke , or some other information they needed , obsviouly they still will generade some alerts dependet on flagment of packet but the ruid will be much more small than the default scan .
+
+in nmap you can flagment the packet with the flag -f like the example bellow:
+
+<img width="835" height="218" alt="image" src="https://github.com/user-attachments/assets/eaefe43a-af98-4328-b3d1-83ab6a67f114" />
+
+the firewall will still regitered the network connection : 
+<img width="1908" height="907" alt="image" src="https://github.com/user-attachments/assets/32273b51-f0f8-4d24-a392-91c029b43a0d" />
+but on SIEM number of alerts generated will be much smaller in the previous test we have 50-70 alerts of the rule 110002(port scan detected) in this we have only 13 alerts 
+
+image before the fragmented scan we have 208:
+
+<img width="1914" height="921" alt="image" src="https://github.com/user-attachments/assets/27f90532-cda7-4b6d-ba06-bee2d44c2022" />
+
+after the scan we have 221 alerts:
+
+<img width="1523" height="863" alt="image" src="https://github.com/user-attachments/assets/0a51d1f7-fe79-4d0a-8676-9b885d102fd2" />
+
+other techniques is decoy
+
+other bypass techniques are time based , if a firewall or a SIEM based they rule in how many request the victim receveid , the attack will now send a request in big period of time , they 
+
+
+
+
+
+
+
+
+    
+
+
+
+
 
 
 
