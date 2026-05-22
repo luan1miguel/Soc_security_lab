@@ -1,0 +1,12 @@
+<group name="local,opnsense,firewall">
+
+  <rule id="110001" level="4">
+    <decoded_as>opnsense-filterlog</decoded_as>
+    <field name="fw_action">pass</field>
+
+    <description>conexão permitida pelo OPNsense</description>
+
+    <group>firewall,opnsense,network</group>
+  </rule>
+
+</group>
