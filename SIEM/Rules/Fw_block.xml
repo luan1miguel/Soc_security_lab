@@ -1,13 +1,10 @@
-<group name="local,opnsense,firewall">
+<group name="local,syslog">
 
-  <rule id="110001" level="2">
-    <decoded_as>opnsense-network</decoded_as>
-
-    <match>pass</match>
-
-    <description>conexão permitida pelo OPNsense</description>
-
-    <group>firewall,opnsense,network</group>
+  <rule id="100001" level="2">
+    <decoded_as>opnsense-filterlog</decoded_as>
+    <field name="fw_action">block</field>
+    <description>Bloqueio opnsense</description>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,opnsense,firewall,</group>
   </rule>
 
 </group>
