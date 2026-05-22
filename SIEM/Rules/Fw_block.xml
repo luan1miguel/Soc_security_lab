@@ -1,11 +1,11 @@
 <group name="local,opnsense,firewall">
 
-  <rule id="110001" level="1">
+  <rule id="110001" level="2">
     <decoded_as>opnsense-network</decoded_as>
 
-    <field name="fw_action">block</field>
+    <match>pass</match>
 
-    <description>OPNsense bloqueou conexão</description>
+    <description>conexão permitida pelo OPNsense</description>
 
     <group>firewall,opnsense,network</group>
   </rule>
