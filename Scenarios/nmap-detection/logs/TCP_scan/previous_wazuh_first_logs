@@ -1,6 +1,0 @@
-previous_output
-1 2026-05-22T07:58:23-03:00 OPNsense.localdomain filterlog 75909 - [meta sequenceId="200"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,44,42424,0,none,6,tcp,44,10.4.0.5,10.2.0.13,44402,30951,0,S,2031099311,,1024,,mss
-1 2026-05-22T07:58:23-03:00 OPNsense.localdomain filterlog 75909 - [meta sequenceId="203"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,45,58470,0,none,6,tcp,44,10.4.0.5,10.2.0.13,44402,1192,0,S,2031099311,,1024,,mss
-1 2026-05-22T07:58:23-03:00 OPNsense.localdomain filterlog 75909 - [meta sequenceId="202"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,46,58470,0,none,6,tcp,44,10.4.0.5,10.2.0.13,44402,1192,0,S,2031099311,,1024,,mss
-1 2026-05-22T07:58:23-03:00 OPNsense.localdomain filterlog 75909 - [meta sequenceId="201"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,43,42424,0,none,6,tcp,44,10.4.0.5,10.2.0.13,44402,30951,0,S,2031099311,,1024,,mss
-1 2026-05-22T07:58:23-03:00 OPNsense.localdomain filterlog 75909 - [meta sequenceId="199"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,38,49949,0,none,6,tcp,44,10.4.0.5,10.2.0.13,44402,5915,0,S,2031099311,,1024,,mss
