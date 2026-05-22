@@ -1,0 +1,18 @@
+WAN		2026-05-22T14:02:54-03:00	45.185.110.87:33501	10.2.0.13:1001	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	11.138.248.251:33501	10.2.0.13:1001	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+LAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:1001	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:1001	tcp	permitir trafego da rede hacker para o lab	
+WAN		2026-05-22T14:02:54-03:00	137.46.171.244:33501	10.2.0.13:1001	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	49.11.119.138:33501	10.2.0.13:1001	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	147.138.0.251:33501	10.2.0.13:1001	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	45.185.110.87:33501	10.2.0.13:6101	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	11.138.248.251:33501	10.2.0.13:6101	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+LAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:6101	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:6101	tcp	permitir trafego da rede hacker para o lab	
+WAN		2026-05-22T14:02:54-03:00	137.46.171.244:33501	10.2.0.13:6101	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	49.11.119.138:33501	10.2.0.13:6101	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	147.138.0.251:33501	10.2.0.13:6101	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	45.185.110.87:33501	10.2.0.13:2968	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+WAN		2026-05-22T14:02:54-03:00	11.138.248.251:33501	10.2.0.13:2968	tcp	bloqueia todo o trafego de externa a rede do laboratorio	
+LAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:2968	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:02:54-03:00	10.4.0.5:33501	10.2.0.13:2968	tcp	permitir trafego da rede hacker para o lab

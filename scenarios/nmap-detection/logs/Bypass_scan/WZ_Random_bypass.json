@@ -1,0 +1,67 @@
+{
+  "_index": "wazuh-alerts-4.x-2026.05.22",
+  "_id": "0e5IUZ4Bigr3aoVjxPVD",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "input": {
+      "type": "log"
+    },
+    "agent": {
+      "name": "wazuh-server",
+      "id": "000"
+    },
+    "previous_output": "1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"181\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,47,23760,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,6101,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"180\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,48,23760,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,6101,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"174\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,56,920,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,2968,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"173\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,57,920,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,2968,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"166\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,41,64196,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,9001,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"167\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,40,64196,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,9001,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"160\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,52,58957,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,5033,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"159\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,53,58957,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,5033,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"153\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,57,384,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,4004,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"152\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,58,384,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,4004,0,S,3327159918,,1024,,mss\n1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"146\"] 63,,,fae559338f65e11c53669fc3642c93c2,em0,match,pass,out,4,0x0,,47,40727,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,1947,0,S,3327159918,,1024,,mss",
+    "manager": {
+      "name": "wazuh-server"
+    },
+    "data": {
+      "reason": "match",
+      "srcip": "10.4.0.5",
+      "ip_version": "4",
+      "dstport": "1001",
+      "tracker": "94d68213a582dda1692a94eb9f665d22",
+      "srcport": "33501",
+      "dstip": "10.2.0.13",
+      "fw_action": "pass",
+      "interface": "em1",
+      "net_protocol": "tcp",
+      "direction": "in"
+    },
+    "rule": {
+      "firedtimes": 7,
+      "mail": false,
+      "level": 8,
+      "description": "Possível port scan detectado pelo OPNsense",
+      "groups": [
+        "opnsense",
+        "scan",
+        "Tcp_scanport_scan",
+        "reconnaissance",
+        "attack"
+      ],
+      "id": "110002",
+      "frequency": 15
+    },
+    "location": "10.2.0.6",
+    "decoder": {
+      "name": "opnsense-filterlog"
+    },
+    "id": "1779480174.651314",
+    "full_log": "1 2026-05-22T14:02:54-03:00 OPNsense.localdomain filterlog 498 - [meta sequenceId=\"187\"] 65,,,94d68213a582dda1692a94eb9f665d22,em1,match,pass,in,4,0x0,,52,53780,0,none,6,tcp,44,10.4.0.5,10.2.0.13,33501,1001,0,S,3327159918,,1024,,mss",
+    "timestamp": "2026-05-22T20:02:54.475+0000"
+  },
+  "fields": {
+    "timestamp": [
+      "2026-05-22T20:02:54.475Z"
+    ]
+  },
+  "highlight": {
+    "manager.name": [
+      "@opensearch-dashboards-highlighted-field@wazuh-server@/opensearch-dashboards-highlighted-field@"
+    ]
+  },
+  "sort": [
+    1779480174475
+  ]
+}

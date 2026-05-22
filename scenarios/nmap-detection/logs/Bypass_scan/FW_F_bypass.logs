@@ -1,0 +1,19 @@
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:5900	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:443	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:443	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:1723	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:1723	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:256	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:256	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:3306	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:3306	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:25	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:25	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:3389	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:3389	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:8080	tcp	let out anything from firewall host itself	
+WAN		2026-05-22T14:08:26-03:00	10.4.0.5:52828	10.2.0.13:8080	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-05-22T14:08:17-03:00	10.2.0.9:51637	10.2.0.6:80	tcp	anti-lockout rule	
+WAN		2026-05-22T14:08:13-03:00	10.4.0.5:42859	10.0.2.3:53	udp	permitir trafego da rede hacker para o lab
