@@ -155,6 +155,29 @@ Another possible evasion technique involves reducing scan frequency.
 Since the current detection logic is based on frequency and timeframe correlation, a low-and-slow scan may avoid detection by spreading requests over a longer period of time.
 
 This scenario was not deeply tested because the rule logic is already known in this lab environment, making this bypass behavior predictable.
+--
+## Lessons Learned
+
+- Correlation rules are effective for detecting high-frequency reconnaissance
+- Firewall pass events may still indicate malicious behavior
+- Fragmented packets can reduce detection visibility
+- Detection quality depends on log consistency and correlation logic
+- SIEM tuning is required to balance visibility and false positives
+- Effective reconnaissance requires minimizing noise and adapting techniques to reduce detection visibility.
+- Understanding defensive controls helps attackers modify behavior and test detection gaps during reconnaissance.
+
+--
+## Detection Limitations
+
+The current detection logic relies heavily on frequency, timeframe, and source-IP correlation. More advanced evasion techniques or low-frequency scans may reduce detection effectiveness and require additional tuning.
+--
+## Future Improvements
+
+- Improve fragmented scan detection
+- Add IDS/IPS integration
+- Implement active response automation
+- Create web attack detection scenarios
+- Improve correlation logic for stealth scans
 
 
 
