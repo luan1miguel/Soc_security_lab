@@ -1,4 +1,4 @@
-# SSTI Detection and Exploitation Scenario
+<img width="1420" height="928" alt="image" src="https://github.com/user-attachments/assets/9e9a0e77-debf-4fe7-a85b-47c5c5a79a05" /># SSTI Detection and Exploitation Scenario
 
 ## Objective
 
@@ -45,6 +45,69 @@ the image bellow use the following payloads: {{ __import__('os').popen('ls').rea
 
 <img width="1365" height="888" alt="image" src="https://github.com/user-attachments/assets/24432ce7-529e-432b-b800-2a667576f364" />
 (For the purpose of this demonstration, the request was sent directly to the application. WAF evasion techniques will be discussed in a dedicated section later in this document.)
+
+## Detection and response
+
+in this case since the SSTI are explorable manually so only a few http request are send to the server, with no volume in this kind of attack in SIEM no alert is generated. 
+
+so whats the SOC team has to do in this case ? 
+
+1- make sure the WAF has the correctly rules are correctly implamented
+2- monitoring the server and any commands out of usual, and deal with hardning the server 
+
+## WAF Analisys 
+
+During the assessment, the default OWASP CRS successfully blocked payloads associated with command execution. However, simple fingerprinting payloads (like {{7*7}} or {{7*'7'}}) were not considered malicious and therefore were allowed. This behavior allowed the attacker to confirm the existence of the SSTI vulnerability before attempting exploitation.
+
+<img width="1565" height="983" alt="image" src="https://github.com/user-attachments/assets/a5bbda2c-474b-460a-b1f0-1d6a35cffef7" />
+
+but when attacker try to execute any command on machine ( payload: {{ __import__('os').popen('ls').read() }}  ) the WAF correctly blocked this. and generade some logs but. like saiyng before this is only a single request,in this case the blocked has been sucessfull so the so the SIEM will registry only a single rule with level 2. 
+
+<img width="911" height="284" alt="image" src="https://github.com/user-attachments/assets/7844722d-0ce2-4a25-8d2c-dc4da03937be" />
+
+<img width="1919" height="1036" alt="image" src="https://github.com/user-attachments/assets/90497f77-a9e1-4f99-b809-3e411e699bd4" />
+
+<img width="1145" height="919" alt="image" src="https://github.com/user-attachments/assets/a0fbade5-8e94-449d-b925-db0f2f716dfe" />
+
+This illustrates an important challenge for SOC teams: not every successful detection should become a high-priority alert. Manual exploitation often generates only a few events, making traditional frequency-based correlation ineffective. 
+
+## WAF bypass
+
+Like any security control, a WAF has limitations and should not be considered the only line of defense. so the attacker can identifies the vulnerabilities and whats template are using on this web app.
+
+The WAF relies on signatures and request analysis to identify malicious patterns. Understanding how these rules behave allows an attacker to evaluate possible weaknesses in the deployed policy.
+
+the funcionallity send some kind of special characters? so the WAF maybe accept this kind of characters. this is a simple example but undestand that will be a good thing to make a payload to bypass the WAF 
+
+in image below i use test excluding some part of a command injection payload and sent only (__import__('os').popen) this can be usefull to undestand the WAF , in this case the attacker is able to identifie then that WAF don't block the __import__ call or 'os' but block the popen() function 
+
+<img width="1420" height="928" alt="image" src="https://github.com/user-attachments/assets/671db867-9121-402d-b307-3979a98eff33" />
+
+Once the blocked pattern is identified, an attacker may attempt to modify the payload representation to determine whether the detection relies on static signatures or deeper semantic analysis.
+using the following payload : {{ getattr(__import__('os'), 'po'+'pen')('ls').read() }} 
+
+The getattr() function allows attribute access by name at runtime. By splitting the string 'popen' into 'po'+'pen', the static signature is broken at the HTTP request level. The WAF inspects the raw request and never sees the string popen — the concatenation is only resolved by the Python interpreter after the request is approved.
+
+<img width="1918" height="994" alt="image" src="https://github.com/user-attachments/assets/c98308ff-72ee-4886-8829-1b3fc04e354a" />
+
+In this laboratory, the web application can also be reached directly through an internal service port. This configuration exists exclusively for testing purposes and allows comparison between requests inspected by the WAF and requests sent directly to the application.
+
+in this lab we can do this accessing the following ip 10.2.0.13:8080 ( we can discovery about this using a nmap scan)
+
+<img width="1348" height="717" alt="image" src="https://github.com/user-attachments/assets/2501e32d-5c14-44ab-8bf3-bb7a56a31f14" />
+
+This scenario focuses only on a small subset of WAF evaluation techniques. More advanced evasion methods were intentionally left outside the scope of this laboratory to keep the analysis focused on SSTI exploitation and defensive visibility.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
