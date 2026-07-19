@@ -98,7 +98,46 @@ in this lab we can do this accessing the following ip 10.2.0.13:8080 ( we can di
 
 This scenario focuses only on a small subset of WAF evaluation techniques. More advanced evasion methods were intentionally left outside the scope of this laboratory to keep the analysis focused on SSTI exploitation and defensive visibility.
 
+## Mitigation
 
+ in cases envolves a manual attack the mitigations methods will belongs to devoleps methods, WAF rules and hardning server.
+
+### Development
+
+- Never render user-controlled input directly into templates.
+- Treat all user input as data, not executable template code.
+- keep the development dependencies update
+- Apply secure coding practices based on the OWASP Secure Coding Guidelines.
+
+to Waf :
+
+- monitoring all endpoint on application
+-  Prevent direct access to backend services so every request passes through the WAF.
+- Tune rules according to the application's expected behavior to reduce false positives.
+- Keep the OWASP Core Rule Set updated.
+
+### SIEM
+
+- Monitor suspicious process execution initiated by the web server.
+- Detect unexpected outbound network connections.
+- Correlate WAF events with endpoint telemetry.
+- Investigate abnormal privilege escalation attempts.
+
+### Server Hardening
+
+- Run the web application using a non-privileged user.
+- Restrict outbound network connections to reduce the impact of reverse shells.
+- Disable unnecessary services.
+- Apply the principle of least privilege.
+- Use strong authentication credentials and protect privileged accounts.
+
+## Lessons Learned
+
+- Fingerprinting is often enough to identify vulnerable technologies before exploitation.
+- Successful exploitation may generate very little network noise.
+- WAFs significantly increase the attacker's workload but should not replace secure application design.
+- Small changes in payload representation can influence signature-based detections.
+- Understanding defensive controls is an important part of offensive security.
 
 
 
