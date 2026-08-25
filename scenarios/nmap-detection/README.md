@@ -155,6 +155,18 @@ Another possible evasion technique involves reducing scan frequency.
 Since the current detection logic is based on frequency and timeframe correlation, a low-and-slow scan may avoid detection by spreading requests over a longer period of time.
 
 This scenario was not deeply tested because the rule logic is already known in this lab environment, making this bypass behavior predictable.
+
+--
+## Security Mapping
+
+### MITRE ATT&CK
+
+T1046 - Network Service Discovery
+
+The scanning activity performed in this scenario is
+mapped to T1046 because Nmap was used to identify
+available network services on the target.
+
 --
 ## Lessons Learned
 
@@ -170,6 +182,7 @@ This scenario was not deeply tested because the rule logic is already known in t
 ## Detection Limitations
 
 The current detection logic relies heavily on frequency, timeframe, and source-IP correlation. More advanced evasion techniques or low-frequency scans may reduce detection effectiveness and require additional tuning.
+
 --
 ## Future Improvements
 
