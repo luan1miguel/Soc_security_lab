@@ -14,10 +14,13 @@
     <description>Possível port scan detectado pelo OPNsense</description>
 
     <group>port_scan,reconnaissance,attack</group>
+    
+    <mitre> <id>T1046</id> </mitre>
 
   </rule>
 
 </group>
+
 <group name="opnsense,scan,Udp_scan">
 
   <rule id="110003" level="8" frequency="15" timeframe="60">
@@ -33,6 +36,8 @@
     <description>Possível port scan via UDP detectado pelo OPNsense</description>
 
     <group>port_scan,reconnaissance,attack,UDP_SCAN</group>
+    
+    <mitre> <id>T1046</id> </mitre>
 
   </rule>
 
