@@ -161,7 +161,7 @@ This scenario was not deeply tested because the rule logic is already known in t
 
 ### MITRE ATT&CK
 
-T1046 - Network Service Discovery
+T1046 - Network Service Discovery -- https://attack.mitre.org/techniques/T1046/
 
 The scanning activity performed in this scenario is
 mapped to T1046 because Nmap was used to identify
