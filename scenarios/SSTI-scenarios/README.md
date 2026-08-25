@@ -98,9 +98,27 @@ in this lab we can do this accessing the following ip 10.2.0.13:8080 ( we can di
 
 This scenario focuses only on a small subset of WAF evaluation techniques. More advanced evasion methods were intentionally left outside the scope of this laboratory to keep the analysis focused on SSTI exploitation and defensive visibility.
 
+## MITRE ATT&CK
+
+**T1059 - Command and Scripting Interpreter**
+https://attack.mitre.org/techniques/T1059/
+
+The SSTI exploitation resulted in server-side code execution.
+This behavior is mapped to T1059. No specific sub-technique was identified for the behavior demonstrated in this scenario.
+
 ## Mitigation
 
  in cases envolves a manual attack the mitigations methods will belongs to devoleps methods, WAF rules and hardning server.
+ 
+ OWASP Top 10 2025 was used in this lab to understand and identify
+ mitigation strategies for this type of vulnerability:
+
+ https://owasp.org/Top10/2025/A05_2025-Injection/
+
+ PortSwigger documentation was also used as a reference for
+ understanding Server-Side Template Injection and its mitigations:
+
+ https://portswigger.net/kb/issues/00101080_serversidetemplateinjection
 
 ### Development
 
