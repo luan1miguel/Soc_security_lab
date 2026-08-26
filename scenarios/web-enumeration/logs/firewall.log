@@ -1,0 +1,31 @@
+	2026-08-26T13:18:34-03:00	10.2.0.6:37703	10.2.0.10:514	udp	let out anything from firewall host itself	
+LAN		2026-08-26T13:18:32-03:00	10.4.0.5:41300	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:18:32-03:00	10.4.0.5:41300	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50574	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50574	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50568	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50568	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50554	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50554	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50538	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50538	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50530	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50530	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50520	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50520	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50510	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50510	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50498	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50498	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50488	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50488	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50482	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50482	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:04-03:00	10.4.0.5:50470	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:04-03:00	10.4.0.5:50470	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+WAN		2026-08-26T13:15:03-03:00	10.4.0.5:50424	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:03-03:00	10.4.0.5:50412	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:03-03:00	10.4.0.5:50412	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:03-03:00	10.4.0.5:50406	10.2.0.13:80	tcp	let out anything from firewall host itself	
+WAN		2026-08-26T13:15:03-03:00	10.4.0.5:50406	10.2.0.13:80	tcp	permitir trafego da rede hacker para o lab	
+LAN		2026-08-26T13:15:03-03:00	10.4.0.5:50398	10.2.0.13:80	tcp	let out anything from firewall host itself
