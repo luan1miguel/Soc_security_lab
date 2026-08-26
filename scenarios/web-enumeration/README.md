@@ -1,4 +1,4 @@
-# Web Enumeration Detection Scenario
+<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/c30b97ba-c545-425e-af1d-59f641a80dbe" /># Web Enumeration Detection Scenario
 
 ## Objective
 
@@ -18,7 +18,7 @@ The detection logic is designed to identify enumeration behavior rather than rel
 
 ### 1. Dirb Enumeration
 
-a simple dirb command to start a enumeration this command will use a default wordlist and has a objetive locate any paths on site : dirb http://10.2.0.13  
+a simple dirb command to start a enumeration this command will use a default wordlist and has a objetive locate any paths on site : dirb http://10.2.0.13  or a feroxbuster command feroxbuster -u http://10.2.0.13
 
 
 <img width="577" height="600" alt="image" src="https://github.com/user-attachments/assets/49b6a2d2-fec0-40fe-b3f7-34dcf0620eb4" />
@@ -77,18 +77,135 @@ The SOC can then investigate the source IP, requested paths, timestamps and over
 
 --
 
-on the target machine i run a tcpdump command to capture the traffeg and to anylisses this in another point of view
+## Analysis
 
-sudo tcpdump -ni any host 10.4.0.5 -U -w web_enum.pcap
+Rules `100102` and `100104` were triggered during the same enumeration activity.
 
-<img width="1918" height="989" alt="image" src="https://github.com/user-attachments/assets/528049eb-ebad-4ff7-8524-e497b8dab66e" />
+<img width="1890" height="933" alt="image" src="https://github.com/user-attachments/assets/eca7ed8f-33fb-445f-aa7a-110d5690bc72" />
 
-in a simple analyses using tcpdump we identifies the malicious IP from kali "10.4.0.5" , we can confirme this because that IP make too many requisition to us in a short time, and that IP use requisitions to /paths ( like xml,xmls... this is usually) in a alfabhet method.
-this comportament is not common and dispert our attention 
+<img width="1919" height="891" alt="image" src="https://github.com/user-attachments/assets/6da523ec-8935-4f87-a244-bc8260f577a7" />
 
-looking in firewall we confirm a lot of connection from 10.4.0.5 in a short space of time.
+The Wazuh alerts provide two different indicators of the same activity. Rule `100102` identifies the repeated HTTP 404 responses from the same source IP, while rule `100104` identifies a known web enumeration tool through HTTP headers/User-Agent information.
+
+To perform an additional analysis from the network perspective, a packet capture was collected directly from the target machine: tcpdump -ni any host 10.4.0.5 -w web_enum.pcap
+
+when we analyses that pcap file we can find the user-agent feroxbuster that confirme the rule 
+
+<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/17281cb1-8f9b-451c-b6d3-12ab08218f62" />
+
+Dirb behaves differently. Instead of identifying itself as `Dirb`, it uses a browser-like User-Agent:
+
+`Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)`
+
+This demonstrates that User-Agent based detection is not reliable as a standalone indicator, since different enumeration tools may use different or generic User-Agent values.
+
+The OPNsense logs provide an additional view of the same activity, showing multiple connections originating from `10.4.0.5` within a short period of time.
 
 <img width="1919" height="987" alt="image" src="https://github.com/user-attachments/assets/68886c06-b975-4c05-a505-dd3fb9f35d94" />
+
+At this point, the combination of Wazuh correlation, packet capture and firewall telemetry provides sufficient evidence to identify 10.4.0.5 as the source of the suspicious reconnaissance activity.
+
+--
+
+## Bypass Techniques
+
+A script kiddie may use a simple command to enumerate a website, but a more experienced attacker will try to reduce the amount of direct interaction with the target.
+
+This can include passive reconnaissance techniques such as Google Dorks, publicly available information, and observing the application as a legitimate user before performing active enumeration.
+
+Even when active enumeration is performed, the attacker may try to modify the characteristics of the requests to generate fewer or lower-confidence alerts in the SIEM or other defensive controls.
+
+### User-Agent Evasion
+
+The default User-Agent used by tools such as Feroxbuster and FFUF is known and can be used as an indicator by defensive rules.
+
+An attacker can modify or randomize the User-Agent to make the request look less suspicious.
+
+For example, Feroxbuster supports random User-Agent generation using the `-A` option:
+
+feroxbuster -u http://10.2.0.13 -A 
+
+This simple modification can prevent rule 100104 from identifying the enumeration tool based on its User-Agent.
+
+<img width="946" height="501" alt="image" src="https://github.com/user-attachments/assets/2ecfcb0b-f1f5-4757-9687-78ef9be0d569" />
+
+The packet capture below shows the randomized User-Agent observed in the traffic:
+
+<img width="1919" height="967" alt="image" src="https://github.com/user-attachments/assets/20264d2a-9cc8-4f4f-9f1c-a35e0d1a157e" />
+
+This demonstrates a limitation of relying on tool-specific signatures for detection.
+
+###Scan Rate Evasion
+
+Another evasion technique is reducing the scan rate.
+
+Enumeration tools commonly allow the attacker to control the number of concurrent threads or requests. By reducing the request rate, the attacker can make the enumeration activity less obvious and potentially avoid correlation rules based on a high number of requests within a short timeframe.
+
+This can affect rules such as 100102, which relies on multiple HTTP 404 responses from the same source IP within a defined time window.
+
+### Distributed Enumeration
+
+An attacker can also distribute enumeration requests across multiple source IPs, for example by using different proxies.
+
+This can reduce the effectiveness of correlation rules that rely on `same_srcip`, such as rule `100102`.
+
+Instead of observing a large number of requests from a single source:
+
+IP A → 50 requests
+
+the defender may observe:
+
+IP A → 10 requests
+IP B → 10 requests
+IP C → 10 requests
+IP D → 10 requests
+IP E → 10 requests
+
+Depending on the correlation logic, this may prevent the threshold for a single source IP from being reached.
+
+This technique was not implemented in this laboratory because the objective was to evaluate the detection logic rather than build a distributed enumeration infrastructure.
+
+## Mitigation
+
+Web enumeration is difficult to completely prevent because public-facing applications must expose some level of information to legitimate users. Therefore, mitigation should focus on reducing the attack surface and limiting unnecessary information exposure.
+
+Following MITRE ATT&CK mitigation `M1056 - Pre-compromise`, organizations should minimize the amount and sensitivity of information exposed externally and regularly review publicly accessible services and resources.
+
+Additional defensive measures can include:
+
+- Remove unused or unnecessary web endpoints and resources.
+- Avoid exposing administrative or development interfaces publicly.
+- Keep web applications and exposed services properly configured and updated.
+- Use WAF and rate-limiting controls to reduce automated enumeration.
+- Monitor enumeration behavior through SIEM correlation rather than relying only on tool-specific signatures.
+- Use allowlists where appropriate for administrative or internal-only resources.
+
+Blocklists can also be used as an additional control when known malicious sources are identified, but they should not be considered the primary defense. Attackers can change source IPs, use proxies, or distribute requests across multiple addresses.
+
+## MITRE ATT&CK Mapping
+
+ Technique - ID - Description 
+
+ Active Scanning - T1595 - The attacker actively interacts with the target to gather information. 
+ Wordlist Scanning - T1595.003 - The attacker uses wordlists and automated tools to discover web directories, files and resources. 
+
+The main technique demonstrated in this scenario is `T1595.003 - Wordlist Scanning`, which is specifically associated with web content discovery tools such as Dirb, DirBuster and GoBuster. :contentReference[oaicite:1]{index=1}
+
+The detection logic developed in this laboratory attempts to identify this activity through both behavioral indicators and tool-specific indicators.
+
+## Lessons Learned
+
+- Web enumeration can generate a large amount of traffic, making behavioral detection possible even when the specific tool is unknown.
+- Tool-specific indicators such as User-Agent are useful supporting signals, but can be easily modified or bypassed.
+- Detection based only on a source IP or request frequency can also be weakened by slower or distributed enumeration.
+- Multiple independent indicators provide better detection confidence than relying on a single signature.
+- WAF, firewall and SIEM telemetry provide different perspectives of the same activity and should be correlated when possible.
+- From an offensive perspective, understanding how detection rules are implemented helps identify potential evasion opportunities.
+- From a defensive perspective, detection should focus on attacker behavior rather than depending exclusively on known tools or signatures.
+
+
+
+
 
 
 
