@@ -1,4 +1,4 @@
-<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/c30b97ba-c545-425e-af1d-59f641a80dbe" /># Web Enumeration Detection Scenario
+# Web Enumeration Detection Scenario
 
 ## Objective
 
