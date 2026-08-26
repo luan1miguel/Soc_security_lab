@@ -1,0 +1,118 @@
+{
+  "_index": "wazuh-alerts-4.x-2026.08.26",
+  "_id": "97x3P6ABxhHGWoEgxHKK",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "input": {
+      "type": "log"
+    },
+    "agent": {
+      "ip": "10.2.0.13",
+      "name": "waf",
+      "id": "001"
+    },
+    "manager": {
+      "name": "wazuh-server"
+    },
+    "data": {
+      "request": {
+        "headers": {
+          "Accept": "*/*",
+          "User-Agent": "feroxbuster/2.13.0",
+          "Host": "10.2.0.13"
+        },
+        "request_line": "GET /com_newsfeeds HTTP/1.1"
+      },
+      "audit_data": {
+        "server": "Apache/2.4.58 (Ubuntu)",
+        "engine_mode": "ENABLED",
+        "messages": [
+          "Warning. Pattern match \"^[\\\\d.:]+$\" at REQUEST_HEADERS:Host. [file \"/usr/share/modsecurity-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf\"] [line \"736\"] [id \"920350\"] [msg \"Host header is a numeric IP address\"] [data \"10.2.0.13\"] [severity \"WARNING\"] [ver \"OWASP_CRS/3.3.5\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-protocol\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/210/272\"] [tag \"PCI/6.5.10\"]"
+        ],
+        "producer": [
+          "ModSecurity for Apache/2.9.7 (http://www.modsecurity.org/)",
+          "OWASP_CRS/3.3.5"
+        ],
+        "response_body_dechunked": "true",
+        "error_messages": [
+          "[file \"apache2_util.c\"] [line 275] [level 3] [client 10.4.0.5] ModSecurity: Warning. Pattern match \"^[\\\\\\\\\\\\\\\\d.:]+$\" at REQUEST_HEADERS:Host. [file \"/usr/share/modsecurity-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf\"] [line \"736\"] [id \"920350\"] [msg \"Host header is a numeric IP address\"] [data \"10.2.0.13\"] [severity \"WARNING\"] [ver \"OWASP_CRS/3.3.5\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-protocol\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/210/272\"] [tag \"PCI/6.5.10\"] [hostname \"10.2.0.13\"] [uri \"/com_newsfeeds\"] [unique_id \"ao85PrIfB443XKR52ubNSQAAAJY\"]"
+        ],
+        "stopwatch": {
+          "p1": "430",
+          "p2": "322",
+          "p3": "21",
+          "p4": "85",
+          "sw": "0",
+          "p5": "95",
+          "l": "0",
+          "gc": "0",
+          "sr": "97"
+        }
+      },
+      "response": {
+        "headers": {
+          "Content-Length": "271",
+          "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "protocol": "HTTP/1.1",
+        "body": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n<hr>\n<address>Apache/2.4.58 (Ubuntu) Server at 10.2.0.13 Port 80</address>\n</body></html>\n",
+        "status": "404"
+      },
+      "transaction": {
+        "transaction_id": "ao85PrIfB443XKR52ubNSQAAAJY",
+        "local_port": "80",
+        "remote_port": "60836",
+        "local_address": "10.2.0.13",
+        "time": "26/Aug/2026:19:06:38.655776 +0000",
+        "remote_address": "10.4.0.5"
+      }
+    },
+    "rule": {
+      "firedtimes": 5159,
+      "mail": false,
+      "level": 10,
+      "description": "User-Agent de ferramenta de enumeração de diretórios detectado:  de ",
+      "groups": [
+        "local",
+        "modsecurity",
+        "waf",
+        "recon",
+        "attack",
+        "scanner_detected"
+      ],
+      "mitre": {
+        "technique": [
+          "Wordlist Scanning"
+        ],
+        "id": [
+          "T1595.003"
+        ],
+        "tactic": [
+          "Reconnaissance"
+        ]
+      },
+      "id": "100104"
+    },
+    "location": "/var/log/apache2/modsec_audit.log",
+    "decoder": {
+      "name": "json"
+    },
+    "id": "1787771204.79172512",
+    "full_log": "{\"transaction\":{\"time\":\"26/Aug/2026:19:06:38.655776 +0000\",\"transaction_id\":\"ao85PrIfB443XKR52ubNSQAAAJY\",\"remote_address\":\"10.4.0.5\",\"remote_port\":60836,\"local_address\":\"10.2.0.13\",\"local_port\":80},\"request\":{\"request_line\":\"GET /com_newsfeeds HTTP/1.1\",\"headers\":{\"Accept\":\"*/*\",\"User-Agent\":\"feroxbuster/2.13.0\",\"Host\":\"10.2.0.13\"}},\"response\":{\"protocol\":\"HTTP/1.1\",\"status\":404,\"headers\":{\"Content-Length\":\"271\",\"Content-Type\":\"text/html; charset=iso-8859-1\"},\"body\":\"<!DOCTYPE HTML PUBLIC \\\"-//IETF//DTD HTML 2.0//EN\\\">\\n<html><head>\\n<title>404 Not Found</title>\\n</head><body>\\n<h1>Not Found</h1>\\n<p>The requested URL was not found on this server.</p>\\n<hr>\\n<address>Apache/2.4.58 (Ubuntu) Server at 10.2.0.13 Port 80</address>\\n</body></html>\\n\"},\"audit_data\":{\"messages\":[\"Warning. Pattern match \\\"^[\\\\\\\\d.:]+$\\\" at REQUEST_HEADERS:Host. [file \\\"/usr/share/modsecurity-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf\\\"] [line \\\"736\\\"] [id \\\"920350\\\"] [msg \\\"Host header is a numeric IP address\\\"] [data \\\"10.2.0.13\\\"] [severity \\\"WARNING\\\"] [ver \\\"OWASP_CRS/3.3.5\\\"] [tag \\\"application-multi\\\"] [tag \\\"language-multi\\\"] [tag \\\"platform-multi\\\"] [tag \\\"attack-protocol\\\"] [tag \\\"paranoia-level/1\\\"] [tag \\\"OWASP_CRS\\\"] [tag \\\"capec/1000/210/272\\\"] [tag \\\"PCI/6.5.10\\\"]\"],\"error_messages\":[\"[file \\\"apache2_util.c\\\"] [line 275] [level 3] [client 10.4.0.5] ModSecurity: Warning. Pattern match \\\"^[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\d.:]+$\\\" at REQUEST_HEADERS:Host. [file \\\"/usr/share/modsecurity-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf\\\"] [line \\\"736\\\"] [id \\\"920350\\\"] [msg \\\"Host header is a numeric IP address\\\"] [data \\\"10.2.0.13\\\"] [severity \\\"WARNING\\\"] [ver \\\"OWASP_CRS/3.3.5\\\"] [tag \\\"application-multi\\\"] [tag \\\"language-multi\\\"] [tag \\\"platform-multi\\\"] [tag \\\"attack-protocol\\\"] [tag \\\"paranoia-level/1\\\"] [tag \\\"OWASP_CRS\\\"] [tag \\\"capec/1000/210/272\\\"] [tag \\\"PCI/6.5.10\\\"] [hostname \\\"10.2.0.13\\\"] [uri \\\"/com_newsfeeds\\\"] [unique_id \\\"ao85PrIfB443XKR52ubNSQAAAJY\\\"]\"],\"stopwatch\":{\"p1\":430,\"p2\":322,\"p3\":21,\"p4\":85,\"p5\":95,\"sr\":97,\"sw\":0,\"l\":0,\"gc\":0},\"response_body_dechunked\":true,\"producer\":[\"ModSecurity for Apache/2.9.7 (http://www.modsecurity.org/)\",\"OWASP_CRS/3.3.5\"],\"server\":\"Apache/2.4.58 (Ubuntu)\",\"engine_mode\":\"ENABLED\"}}",
+    "timestamp": "2026-08-26T19:06:44.289+0000"
+  },
+  "fields": {
+    "timestamp": [
+      "2026-08-26T19:06:44.289Z"
+    ]
+  },
+  "highlight": {
+    "manager.name": [
+      "@opensearch-dashboards-highlighted-field@wazuh-server@/opensearch-dashboards-highlighted-field@"
+    ]
+  },
+  "sort": [
+    1787771204289
+  ]
+}
