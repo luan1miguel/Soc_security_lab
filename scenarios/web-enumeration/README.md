@@ -16,16 +16,16 @@ The main objective of the attacker is to enumerate web paths and discover new ap
 In this scenario, tools such as FFUF, Dirb and Feroxbuster will be used. Other tools or custom scripts may be tested in future iterations to evaluate and improve the detection logic.
 The detection logic is designed to identify enumeration behavior rather than relying exclusively on tool-specific signatures.
 
----
-
-## Attack Simulation
-
 ### 1. Dirb Enumeration
 
 a simple dirb command to start a enumeration this command will use a default wordlist and has a objetive locate any paths on site : dirb http://10.2.0.13  
 
 
 <img width="577" height="600" alt="image" src="https://github.com/user-attachments/assets/49b6a2d2-fec0-40fe-b3f7-34dcf0620eb4" />
+
+---
+
+## Detection 
 
 on the target machine i run a tcpdump command to capture the traffeg and to anylisses this in another point of view
 
@@ -39,6 +39,8 @@ this comportament is not common and dispert our attention
 looking in firewall we confirm a lot of connection from 10.4.0.5 in a short space of time.
 
 <img width="1919" height="987" alt="image" src="https://github.com/user-attachments/assets/68886c06-b975-4c05-a505-dd3fb9f35d94" />
+
+
 
 
 
