@@ -21,6 +21,7 @@ The attacker machine is located in a permitted network segment and is allowed to
 The main objective of the attacker is to enumerate services and open ports on the target machine without being detected by the SOC team.
 
 The primary tool used during this scenario is Nmap, although other tools may be used in future tests to improve detection logic and rule analysis.
+
 ---
 ## Detection Process
 
