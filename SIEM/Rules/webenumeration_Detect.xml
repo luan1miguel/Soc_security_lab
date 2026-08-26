@@ -1,0 +1,59 @@
+<group name="local,modsecurity,waf,">
+
+  <rule id="100100" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="transaction.remote_address" type="pcre2">.+</field>
+    <description>ModSecurity: evento base do WAF (Apache)</description>
+    <group>modsecurity_waf</group>
+  </rule>
+  
+  <rule id="100101" level="2">
+    <if_sid>100100</if_sid>
+    <field name="response.status" type="pcre2">^404$</field>
+    <description>ModSecurity: requisição resultou em 404 (possível tentativa de path)</description>
+    <group>web_scan,recon</group>
+  </rule>
+  
+  <rule id="100102" level="10" frequency="10" timeframe="60">
+    <if_matched_sid>100101</if_matched_sid>
+    <same_srcip />
+    <description>Possível enumeração de diretórios: $(srcip) gerou múltiplos 404 via WAF em curto intervalo</description>
+    <mitre>
+      <id>T1595.003</id>
+    </mitre>
+    <group>recon,attack,directory_enumeration</group>
+  </rule>
+  
+  <rule id="100103" level="10">
+    <if_sid>100100</if_sid>
+    <field name="audit_data.messages" type="pcre2">913100|913101</field>
+    <description>ModSecurity CRS detectou assinatura de scanner (User-Agent/Header suspeito) de $(srcip)</description>
+    <mitre>
+      <id>T1595.003</id>
+    </mitre>
+    <group>recon,attack,scanner_detected</group>
+  </rule>  
+
+  <rule id="100104" level="10">
+    <if_sid>100100</if_sid>
+    <field name="request.headers.User-Agent" type="pcre2">(?i)(dirb|dirbuster|gobuster|wfuzz|feroxbuster|ffuf|nikto|dirsearch)</field>
+    <description>User-Agent de ferramenta de enumeração de diretórios detectado: $(transaction.request.headers.User-Agent) de $(srcip)</description>
+    <mitre>
+      <id>T1595.003</id>
+    </mitre>
+    <group>recon,attack,scanner_detected</group>
+  </rule>
+  
+  <rule id="100105" level="12" timeframe="60">
+    <if_sid>100103</if_sid>
+    <if_matched_sid>100104</if_matched_sid>
+    <same_srcip />
+    <description> Alerta Critico: enumeração de diretorios confirmada da fonte $(srcip)</description>
+    <mitre>
+      <id>T1595.003</id>
+    </mitre>
+    <group>recon,attack,directory_enumeration,confirmed</group>
+  </rule>         
+    
+</group>
+
