@@ -71,7 +71,7 @@ Depending on the application and the victim's browser context, an attacker could
 
 ## WAF Analys
 
-During the assessment, the default OWASP CRS configuration allowed HTML tags such as <h1>, since they were not considered malicious by the configured rules. This allowed HTML content to be rendered on the frontend, demonstrating that the WAF does not prevent every form of HTML injection.
+During the assessment, the default OWASP CRS configuration allowed HTML tags such as h1, since they were not considered malicious by the configured rules. This allowed HTML content to be rendered on the frontend, demonstrating that the WAF does not prevent every form of HTML injection.
 
 <img width="1919" height="933" alt="image" src="https://github.com/user-attachments/assets/9dfd099f-f4c2-4944-8752-3c360d6f54ae" />
 
