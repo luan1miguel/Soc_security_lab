@@ -1,4 +1,6 @@
-<img width="1420" height="928" alt="image" src="https://github.com/user-attachments/assets/9e9a0e77-debf-4fe7-a85b-47c5c5a79a05" /># SSTI Detection and Exploitation Scenario
+# SSTI Detection and Exploitation Scenario
+
+<img width="1420" height="928" alt="image" src="https://github.com/user-attachments/assets/9e9a0e77-debf-4fe7-a85b-47c5c5a79a05" />
 
 ## Objective
 
