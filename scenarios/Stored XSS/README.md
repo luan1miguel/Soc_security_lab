@@ -103,7 +103,57 @@ As demonstrated in the SSTI scenario, the application backend can also be access
 
 This bypass was already demonstrated in the previous SSTI scenario, so it will not be repeated here.
 
+#SIEM Visibility Limitation
 
+The Wazuh agent can collect server-side events generated during the comment submission and HTTP request processing but by default the rule who collect the WAF log was a rule level 2 so are not showing on SIEM . However, after the JavaScript are stored the execution occurs in the visitor's browser, outside the server environment monitored by the SIEM.
+
+As a result, the browser-side execution and its impact are not directly visible through the current Wazuh log integration. Detecting this activity would require additional client-side telemetry or browser security controls.
+
+This highlights an important limitation of server-side monitoring when investigating Stored XSS vulnerabilities.
+
+# MITRE ATT&CK
+
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting').
+OWASP: Cross-Site Scripting (XSS).
+MITRE ATT&CK: T1059.007 apenas como referência complementar, caso queira relacionar o comportamento de execução de JavaScript.
+
+https://attack.mitre.org/techniques/T1059/007/
+https://community.owasp.org/attacks/xss/
+
+# Application Hardening
+
+Never render user-controlled input as executable HTML or JavaScript.
+Apply context-aware output encoding before displaying user-controlled content.
+If HTML input is required, use a trusted HTML sanitization library with an explicit allowlist.
+Avoid unsafe JavaScript functions and DOM sinks when processing user-controlled data, such as innerHTML.
+Implement a Content Security Policy (CSP) as an additional layer of protection.
+Set appropriate cookie security attributes, especially HttpOnly, Secure and SameSite.
+Keep application dependencies updated.
+Follow secure coding practices based on OWASP guidelines.
+
+#WAF
+
+Monitor endpoints that accept and store user-generated content, such as comments and profile fields.
+Prevent direct access to backend services so every request passes through the WAF.
+Tune rules according to the application's expected behavior to reduce false positives.
+Keep the OWASP Core Rule Set updated.
+Remember that WAF inspection alone cannot reliably prevent stored XSS, especially when malicious content is already stored and later rendered by the application.
+
+#Server Hardening
+
+Apply the principle of least privilege to application accounts and services.
+Restrict unnecessary outbound network connections from the server.
+Disable unnecessary services.
+Use strong authentication credentials and protect privileged accounts.
+
+#Lessons Learned
+
+Stored XSS allows injected JavaScript to execute when another user accesses the affected page.
+HTML injection does not necessarily indicate XSS; JavaScript execution must be confirmed.
+HttpOnly cookies prevent JavaScript from reading those cookies, but do not prevent XSS execution or necessarily stop authenticated actions.
+WAFs can detect and block suspicious payloads, but they do not replace proper input handling and output encoding.
+Stored XSS creates a visibility challenge because JavaScript execution happens in the victim's browser, not directly on the application server.
+Understanding the limitations of defensive controls is an important part of offensive security.
 
 
 
