@@ -99,6 +99,44 @@ The ModSecurity audit logs confirm that the HTTP requests were processed by the 
 However, no CRS rule matches or blocking actions were identified during the tested exploitation attempts.
 
 The malicious serialized object was transmitted through the session cookie and processed by the application without being detected by the WAF. This demonstrates a limitation of relying on signature-based WAF inspection to identify insecure deserialization attacks.
-
 The WAF was operational, but it did not identify or prevent the tested attack.
+
+# Security Classification
+
+OWASP Top 10: A08:2025 – Software or Data Integrity Failures
+
+CWE: CWE-502 – Deserialization of Untrusted Data
+
+OWASP WSTG: WSTG-INJT-23 – Insecure Deserialization
+
+MITRE ATT&CK: T1059.004 – Unix Shell (Execution)
+
+The vulnerability occurs because the application deserializes user-controlled data using Python Pickle without proper integrity validation. This allows session manipulation and arbitrary code execution during deserialization.
+
+# mitigations
+
+Avoid Unsafe Deserialization: Never deserialize untrusted data using Python Pickle. Use safer serialization formats such as JSON when only simple data structures are required.
+
+Session Integrity: Avoid trusting client-controlled session data. Prefer server-side sessions or implement cryptographic integrity protection, such as HMAC, to prevent unauthorized modification of session contents.
+
+Access Control: Validate user permissions on the server side for every privileged operation. Never rely exclusively on a client-controlled role field.
+
+Least Privilege: Run the web application under a dedicated, unprivileged system account and restrict filesystem permissions to reduce the impact of successful exploitation.
+
+Network Restrictions: Restrict unnecessary outbound connections from the web server to limit potential communication with external infrastructure.
+
+# Lessons Learned
+
+Session Manipulation: Client-side session data can be modified when its integrity is not properly protected, potentially allowing unauthorized privilege changes.
+
+Remote Code Execution: Python Pickle can execute code during deserialization, turning an insecure session mechanism into a server-side code execution vulnerability.
+
+WAF Limitations: ModSecurity processed the requests, but no CRS rule was identified as triggered during the tests. A WAF should not be treated as a replacement for secure application design.
+
+Detection Challenges: The attack required only a small number of HTTP requests, and the existing SIEM rules did not generate an alert. Endpoint monitoring and application-level logging can provide additional visibility.
+
+Least Privilege: The impact of successful code execution depends heavily on the permissions available to the web application process.
+
+
+
 
