@@ -32,3 +32,29 @@ Python Pickle can invoke object-specific methods during deserialization. If an a
 This makes the deserialization process a potential RCE attack vector.
 
 <img width="753" height="463" alt="image" src="https://github.com/user-attachments/assets/b0a76724-e2e4-41ae-806d-38f02861337c" />
+
+# Attack Simulation
+
+A attacker when login on application start to enumerate any features, data input , cookie and etc.. to undestand how the application works , in this case we have the user reflect on the login page 
+
+<img width="1917" height="927" alt="image" src="https://github.com/user-attachments/assets/94f001e1-3379-4c8f-8e1a-5e1521ec666d" />
+
+using the devtools (or other tools) they can access and manipulate the cookie session 
+
+<img width="1919" height="270" alt="image" src="https://github.com/user-attachments/assets/ceebcfa6-437e-4202-9625-01b397ff2341" />
+
+decode from base64 the attacker could see some information and some caracters uknow , with the previous enumeration from site the attacker know the site are building on python and maybe use the session from the python , and so they could test to pickle from python 
+
+with a simple python code they confirm : 
+<img width="809" height="161" alt="image" src="https://github.com/user-attachments/assets/bf334823-8b56-47c9-97f9-5c164c025f3d" />
+
+and so they can alter with another python script and set the new cookie on devtools
+
+<img width="573" height="93" alt="image" src="https://github.com/user-attachments/assets/cdccef5b-8c90-4b6c-9818-a066cc1c0ca6" />
+
+<img width="1918" height="928" alt="image" src="https://github.com/user-attachments/assets/a187811f-0247-4b34-b9d2-25c173a0b1a8" />
+
+the attacker can know control they on 'role' and can access thing that they ussualy dont , this is a huge impact depend from application. 
+
+but in some cases they could continue and try some more impact 
+
