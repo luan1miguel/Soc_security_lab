@@ -4,7 +4,8 @@ web application :
 
 <img width="1919" height="548" alt="image" src="https://github.com/user-attachments/assets/405db46c-11c8-4c91-820d-c69a08604b3b" />
 
-#Objective
+
+# Objective
 
 The objective of this scenario is to exploit and analyze an insecure object deserialization vulnerability in a Python web application.
 
@@ -74,6 +75,30 @@ After sending the modified object through the session cookie, the application de
 
 This confirms that the vulnerability allows arbitrary code execution in the context of the web application process. An attacker could potentially use this access to perform further actions, depending on the application's privileges and server configuration.
 
+# Detection and response
 
-but in some cases they could continue and try some more impact 
+In this scenario, the object deserialization vulnerability can be exploited through a small number of HTTP requests. Since the attack does not necessarily generate a high volume of traffic, the existing SIEM correlation rules may not trigger any alerts.
+
+So, what should the SOC team do in this situation?
+
+WAF Monitoring: Ensure that the WAF rules are properly configured and updated. However, do not rely exclusively on the WAF to detect insecure deserialization.
+
+Endpoint Monitoring: Monitor the web server for unexpected process execution, suspicious child processes, and unusual file creation or modification.
+
+Log Analysis: Investigate application logs and correlate suspicious HTTP requests with endpoint events, especially when unexpected commands or file operations occur.
+
+Server Hardening: Apply the principle of least privilege, restrict unnecessary permissions, and limit outbound network connections to reduce the potential impact of successful exploitation.
+
+A low volume of HTTP requests does not necessarily mean that an attack is harmless or easy to detect. Endpoint telemetry and application monitoring are important additional sources of visibility.
+
+# WAF Analys
+
+
+The ModSecurity audit logs confirm that the HTTP requests were processed by the WAF, with the engine enabled and OWASP CRS 3.3.5 loaded.
+
+However, no CRS rule matches or blocking actions were identified during the tested exploitation attempts.
+
+The malicious serialized object was transmitted through the session cookie and processed by the application without being detected by the WAF. This demonstrates a limitation of relying on signature-based WAF inspection to identify insecure deserialization attacks.
+
+The WAF was operational, but it did not identify or prevent the tested attack.
 
